@@ -90,7 +90,7 @@ function App() {
       ),
     },
     {
-      path: '/register',
+      path: '/freelancer',
       element: (
         <ProtectedRoute>
           <RegisterFree />

@@ -1,18 +1,18 @@
 import {setDoc,doc} from "firebase/firestore";
 import { db } from "./firebaseConfig";
-const metamaskAddress='0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B'
-export async function addClientDetails(details) {
+
+export async function addClientDetails(details, userAddress) {
   try {
-    await setDoc(doc(db, "clients", metamaskAddress), details);
+    await setDoc(doc(db, "clients", userAddress), details);
     console.log("Clients details added successfully");
   } catch (error) {
     console.error("Error adding client details: ", error);
   }
 }
 
-export async function addFreelancerDetails(details) {
+export async function addFreelancerDetails(details, userAddress) {
   try {
-    await setDoc(doc(db, "freelancers", metamaskAddress), details);
+    await setDoc(doc(db, "freelancers", userAddress), details);
     console.log("Freelancer details added successfully");
   } catch (error) {
     console.error("Error adding freelancer details: ", error);

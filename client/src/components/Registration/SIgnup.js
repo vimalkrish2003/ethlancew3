@@ -18,7 +18,7 @@ const Signup = () => {
   if (accountType === 'employer') {
     navigate('/client'); // Redirect to /intro if employer selected
   } else if (accountType === 'freelancer') {
-    navigate('/register'); // Redirect to /register if freelancer selected
+    navigate('/freelancer'); // Redirect to /register if freelancer selected
   }
 };
 
