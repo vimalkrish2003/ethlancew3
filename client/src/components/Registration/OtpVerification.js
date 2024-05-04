@@ -104,7 +104,8 @@ const OtpVerification = ({
           address: address,
           gender: gender,
           dob: dob,
-          type :type
+          type :type,
+          phoneNo:ph
         };
         addClientDetails(details,userAddress);
       }
@@ -119,6 +120,7 @@ const OtpVerification = ({
           gender,
           dob,
           type,
+          phoneNo:ph,
           goal,
           selectedPhoto,
           professionalRole,
