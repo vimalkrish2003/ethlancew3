@@ -1,0 +1,319 @@
+
+.App {
+  text-align: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.errmsg{
+  color: red;
+}
+.header{
+  width: 100%;
+  background-color: blue;
+  color: #fff;
+  padding: 1%;
+}
+a{
+  text-decoration: none !important;
+  color: white !important;
+  padding: 2px;
+}
+app-check{
+  height: 20px;
+  width: 20px;
+  margin: 1%;
+}
+.header{
+  width: 100%;
+  background-color: blue;
+  color: #fff;
+  padding: 1%;
+}
+/* a{
+  text-decoration: none !important;
+  color: white !important;
+  padding: 2px;
+} */
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.country-select-box{
+  height: 100px;
+  overflow-y: auto;
+}
+.col-lg-6,
+.col-lg-12 {
+  clear: both;
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px;
+ text-align: center;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group.label-upload-photo {
+  display: none; /* Hide the box under the "Upload Photo" heading */
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.form-control button {
+  margin-right: 10px; /* Add margin-right to create space between skill boxes */
+  margin-bottom: 10px; /* Add margin-bottom to create space between rows of skill boxes */
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.errmsg {
+  color: red;
+}
+
+.country-select {
+  display: flex;
+  align-items: center;
+}
+
+.country-select select {
+  flex-grow: 1;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+}
+
+.card-footer .btn {
+  margin-right: 10px;
+}
+
+.gender-radio {
+  display: flex;
+  align-items: center;
+}
+
+.gender-radio input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* App.css */
+
+.work-experience-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.toggle-box {
+  display: flex;
+  align-items: center;
+  
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px; /* Adjust width as needed */
+
+}
+
+.toggle-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.toggle-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+.toast-container {
+  z-index: 9999; /* Ensure toast messages appear above other elements */
+  font-family: Arial, sans-serif; /* Specify preferred font family */
+}
+
+/* Customize toast message style */
+.toast {
+  border-radius: 8px;
+  padding: 12px 16px; /* Adjust padding for a more compact appearance */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft box shadow for depth */
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Success toast */
+.toast-success {
+  background-color: #28a745;
+}
+
+/* Error toast */
+.toast-error {
+  background-color: #dc3545;
+}
+
+/* Warning toast */
+.toast-warning {
+  background-color: #ffc107;
+}
+
+/* Info toast */
+.toast-info {
+  background-color: #17a2b8;
+}
+
+/* Customize toast message progress bar */
+.toast-progress {
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+}
+
+/* Override default toast message close button */
+.toast-close {
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Style toast message text */
+.toast-message {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Adjust toast message position */
+.toast-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+/* Media query to adjust toast message position on smaller screens */
+@media (max-width: 768px) {
+  .toast-top-right {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.photo-icon {
+  height: 180px; /* Adjust the height as needed */
+  width: 200px; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the icon horizontally */
+  display: block; /* Ensure it's displayed as a block element */
+}
+input[type="file"] {
+  display: none;
+}
+.upload-photo-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.upload-photo-label {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.upload-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.upload-photo-input {
+  display: none;
+}
