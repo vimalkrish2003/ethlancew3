@@ -18,7 +18,7 @@ import Signup from "./components/Registration/SIgnup";
 import Landing from "./components/intropage/landing";
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import Free from "./components/mainfree/FreelanceDashboard"
 
 
 function MetaMaskButton() {
@@ -113,6 +113,13 @@ function App() {
         </ProtectedRoute>
       ),
     },
+    {
+      path:'/filter',
+      element:( 
+        <Free/>
+      )
+    },
+    
   ]);
 
   return (

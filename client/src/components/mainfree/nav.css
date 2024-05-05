@@ -1,0 +1,44 @@
+/* Navbar logo */
+.nav-logo-container {
+  font-size: 2.5rem;
+  color: #fe9e0d;
+}
+
+/* Navbar links */
+.navbar-links-container {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.navbar-links-container a {
+  margin-right: 2rem;
+  text-decoration: none;
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Navbar menu icon */
+.navbar-menu-container {
+  display: none;
+}
+
+.navbar-menu-container svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 800px) {
+  /* Hide navbar links and show menu icon */
+  .navbar-links-container {
+    display: none;
+    color:black;
+  }
+  .navbar-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
