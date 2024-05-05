@@ -87,11 +87,11 @@
 }
 .view-bids-button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background-color: #dd6b08;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -105,4 +105,44 @@
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
   border-radius: 5px;
+}
+.bid-box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.bid-info {
+  display: flex;
+  align-items: center; /* Align items vertically in the flex container */
+}
+.profile-icon-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Add margin to create space between the circle and text */
+}
+.profile-icon {
+ font-size: 20px; /* Add margin to create space between the icon and text */
+}
+.hire-button-container {
+  text-align:end;
+  margin-top: 10px;
+}
+
+.hire-button {
+  background-color: #dd6b08;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.hire-button:hover {
+  background-color: #802909;
 }

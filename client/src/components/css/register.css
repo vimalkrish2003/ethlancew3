@@ -33,7 +33,7 @@
 }
 .header{
   width: 100%;
-  background-color: blue;
+  background-color: #fe9e0d;
   color: #fff;
   padding: 1%;
 }
@@ -47,12 +47,7 @@ app-check{
   width: 20px;
   margin: 1%;
 }
-.header{
-  width: 100%;
-  background-color: blue;
-  color: #fff;
-  padding: 1%;
-}
+
 /* a{
   text-decoration: none !important;
   color: white !important;
@@ -92,10 +87,11 @@ app-check{
   max-width: 600px;
   padding: 20px;
   overflow-y: auto;
+  box-shadow:  0 2px 5px rgba(254, 158, 13, 0.5);
 }
 
 .card-header {
-  background-color: #007bff;
+  background-color: #fe9e0d;
   color: #ffffff;
   padding: 10px;
  text-align: center;
@@ -122,6 +118,7 @@ app-check{
   padding: 10px;
   border: 1px solid #ced4da;
   border-radius: 5px;
+  box-shadow:  0 2px 5px rgba(254, 158, 13, 0.5);
 }
 
 .form-control button {
@@ -136,17 +133,17 @@ app-check{
 }
 
 .btn-primary {
-  background-color: #007bff;
+  background-color: #fe9e0d;
   color: #ffffff;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #e48f0f;
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: #e84b08;
   color: #ffffff;
   border: none;
 }
@@ -296,6 +293,7 @@ input[type="file"] {
   display: flex;
   align-items: center;
   flex-direction: column;
+ 
   
 }
 
@@ -303,10 +301,14 @@ input[type="file"] {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  border: 1px solid #ccc;
+  border: 3px solid #fe9e0d;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+ 
+}
+.upload-photo-label:hover{
+  background-color: #df7b09;
 }
 
 .upload-icon {
