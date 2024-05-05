@@ -66,7 +66,7 @@ const ProjectDetails = () => {
                 <p>Bid Amount: {bid.amount}</p>
               </div>
               <div className="hire-button-container">
-      <button className="hire-button">Hire</button>
+              <Link to={`/payment/${projectId}`} className="hire-button">Hire</Link>
     </div>
             </div>
           ))}
