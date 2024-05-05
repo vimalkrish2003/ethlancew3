@@ -8,13 +8,14 @@ import { BrowserRouter, Route, Routes, useRoutes } from "react-router-dom";
 // import Home from './Home';
 
 import OtpVerification from './components/Registration/OtpVerification';
-
+import ClientPage from "./components/client_landing/ClientPage";
+import CreateProject from "./components/client_landing/CreateProject";
 import Register from './components/Registration/Register_client';
 import { ToastContainer } from 'react-toastify';
 import RegisterFree from './components/Registration/Register_free';
 import "react-toastify/dist/ReactToastify.css";
 import Signup from "./components/Registration/SIgnup";
-
+import ProjectDetails from "./components/client_landing/ProjectDetails";
 import Landing from "./components/intropage/landing";
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -110,6 +111,30 @@ function App() {
       element: (
         <ProtectedRoute>
           <Signup />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/clientpage',
+      element: (
+        <ProtectedRoute>
+          <ClientPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/createproject',
+      element: (
+        <ProtectedRoute>
+          <CreateProject />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/projectdetails/:projectId',
+      element: (
+        <ProtectedRoute>
+          <ProjectDetails />
         </ProtectedRoute>
       ),
     },
