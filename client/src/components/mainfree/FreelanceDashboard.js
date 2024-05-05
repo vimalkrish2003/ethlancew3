@@ -116,7 +116,7 @@ const FreelancerDashboard = () => {
   }, [filters]);
 
   const handleBidClick = (projectId) => {
-   // Use navigate instead of history.push
+    navigate(`/bid/${projectId}`)
   };
 
   return (
@@ -148,8 +148,8 @@ const FreelancerDashboard = () => {
           {projects.map((project) => (
             <Grid item xs={12} key={project.id}>
               <Box className={classes.projectItem}>
-                <Typography variant="h6">{project.name}</Typography>
-                <Typography>{project.description}</Typography>
+                <Typography variant="h6">{project.jobTitle}</Typography>
+                <Typography>{project.projectOutline}</Typography>
                 <Button
                   className={classes.placeBidButton}
                   variant="contained"

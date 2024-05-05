@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Paper, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3'; // Import web3 library
 import PlaceBidABI from '../../contracts/PlaceBid.json';
+import { useParams } from 'react-router-dom';
+import { fetchProjectDetailsById } from '../../firebase/fetchDetails';
 
-const PlaceBid = () => {
-  const [proposal, setProposal] = useState('');
-  const [deliveryTime, setDeliveryTime] = useState('');
+const BidForm = ({ onSubmit }) => {
   const [bidAmount, setBidAmount] = useState('');
-  const [bidData, setBidData] = useState([]);
+  const [deliveryTime, setDeliveryTime] = useState('');
+  const [proposal, setProposal] = useState('');
+  const [projectDetails, setProjectDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { projectId } = useParams();
   const navigate = useNavigate();
   const abi = PlaceBidABI.abi;
- 
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      const details = await fetchProjectDetailsById(projectId);
+      setProjectDetails(details);
+      setIsLoading(false);
+    };
 
+    fetchProjectDetails();
+  }, [projectId]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  
+  
   const handleProposalChange = (e) => {
     setProposal(e.target.value);
   };
@@ -26,7 +42,9 @@ const PlaceBid = () => {
   const handleBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
-  const handleSubmit = async (e) => {
+  
+ const handleSubmit = async (e) => {
+
     e.preventDefault();
   
     if (!window.ethereum) {
@@ -105,7 +123,18 @@ const PlaceBid = () => {
   return (
     <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
       <Paper elevation={3} style={{ padding: '20px', maxWidth: '500px' }}>
-        <Typography variant="h6" gutterBottom>Place Bid</Typography>
+
+        {/* Project Details */}
+          
+        <Box mb={2} textAlign="center">
+          <Typography variant="h6">{projectDetails.jobTitle}</Typography>
+          <Typography>{projectDetails.projectOutline}</Typography>
+          <Typography>{projectDetails.description}</Typography>
+          <Typography>{projectDetails.maximumPay}</Typography>
+        </Box>
+
+        {/* Bid Form */}
+
         <form onSubmit={handleSubmit}>
           <TextField
             label="Bid Amount ($)"
@@ -149,4 +178,4 @@ const PlaceBid = () => {
   );
 };
 
-export default PlaceBid;
+export default BidForm;
