@@ -1,0 +1,281 @@
+.fixed {
+    position: fixed;
+  }
+  
+  .top-0 {
+    top: 0;
+  }
+  
+  .left-0 {
+    left: 0;
+  }
+  
+  .w-screen {
+    width: 100vw;
+  }
+  
+  .h-screen {
+    height: 100vh;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .bg-black {
+    background-color: #000;
+  }
+  
+  .bg-opacity-50 {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .shadow-md {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shadow-green-500 {
+    box-shadow: 0px 4px 6px rgba(46, 213, 115, 0.5);
+  }
+  
+  .rounded-xl {
+    border-radius: 0.75rem;
+  }
+  
+  .p-6 {
+    padding: 1.5rem;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .border-0 {
+    border: none;
+  }
+  
+  .bg-transparent {
+    background-color: transparent;
+  }
+  
+  .focus\:outline-none:focus {
+    outline: none;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .right-2 {
+    right: 0.5rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+    font-weight: bold; /* Added */
+  }
+  
+  .mb-5 {
+    margin-bottom: 1.25rem;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .space-y-1 > * + * {
+    margin-top: 0.25rem;
+  }
+  
+  .rounded-md {
+    border-radius: 0.375rem;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .inline-flex {
+    display: inline-flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .mr-4 {
+    margin-right: 1rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .text-gray-500 {
+    color: #718096;
+  }
+  
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  
+  .border-gray-300 {
+    border-color: #cbd5e0;
+  }
+  
+  .rounded-b-md {
+    border-bottom-left-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+  }
+  
+  .focus\:ring-0:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .bg-green-500 {
+    background-color: #48bb78;
+  }
+  
+  .text-white {
+    color: #fff;
+  }
+  
+  .rounded-md {
+    border-radius: 0.375rem;
+  }
+  
+  .px-9 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .absolute.-top-2.-right-2 {
+    top: -0.5rem;
+    right: -0.5rem;
+  }
+  
+  .text-sm {
+    font-weight: bold;
+  }
+  
+  label.block {
+    margin-bottom: 0.75rem; /* Adjust as needed */
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 1.5rem; /* Adjust as needed */
+  }
+  
+  /* Add spacing between checkboxes and their labels */
+  label.inline-flex {
+    margin-bottom: 0.75rem;
+    /* Adjust as needed */
+  }
+  
+  /* Add spacing between checkbox labels and their descriptions */
+  label.inline-flex span {
+    margin-bottom: 0.25rem; /* Adjust as needed */
+  }
+  label.mb-2{
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .mb-5{
+    margin-top: 1rem;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .w-screen {
+      width: 90vw;
+    }
+  
+    .max-w-md {
+      max-width: 90%;
+    }
+  }
+  
+  /* Add custom styles to enable scrolling */
+  .bg-white {
+    /* Set a background color for the modal content */
+    background-color: #fff;
+  }
+  
+  .w-full {
+    /* Ensure the modal takes the full width of its container */
+    width: 100%;
+  }
+  
+  .max-w-md {
+    /* Set a maximum width for the modal */
+    max-width: 80rem; /* Adjust as needed */
+  }
+  
+  .h-3 {
+    /* Set the height of the modal */
+    height: 75%; /* Adjust as needed */
+  }
+  
+ 
+  .warning-message{
+    color: rgb(142, 48, 48);
+  }
+  /* Adjustrgb(103, 20, 20)e styles for the description input field when it's less than 200 characters */
+  .description-input.invalid {
+    border-color: #f44336; /* Red border color */
+  }
+  /* Add custom styles for the skills dropdown */
+.skills-dropdown {
+  position: absolute;
+  top:calc(100% + 0.2rem);
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.category-box{
+  position: relative;
+}
+/* Add styles for individual skill items */
+.skill-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skill-item:hover {
+  background-color: #f7fafc;
+}
+
+/* Add styles for active skill items */
+.skill-item.active {
+  background-color: #48bb78;
+  color: #fff;
+}

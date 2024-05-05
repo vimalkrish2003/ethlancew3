@@ -7,11 +7,10 @@ import OtpInput from "otp-input-react";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
-
 import { auth } from "../../firebase/firebaseConfig";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
+import { useAuth } from "../../contexts/authUserContext";
 // import '../index.css';
 
 import { addClientDetails, addFreelancerDetails } from "../../firebase/addDetails";
@@ -44,7 +43,7 @@ const OtpVerification = ({
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
-  
+  const { userAddress } = useAuth();
   console.log("inside otpverification :",username,name)
 
   function onCaptchVerify() {
@@ -105,9 +104,10 @@ const OtpVerification = ({
           address: address,
           gender: gender,
           dob: dob,
-          type :type
+          type :type,
+          phoneNo:ph
         };
-        addClientDetails(details);
+        addClientDetails(details,userAddress);
       }
       else if (type=='freelancer')
       {
@@ -120,6 +120,7 @@ const OtpVerification = ({
           gender,
           dob,
           type,
+          phoneNo:ph,
           goal,
           selectedPhoto,
           professionalRole,
@@ -131,7 +132,7 @@ const OtpVerification = ({
           institution,
           degreeDomain
         };
-        addFreelancerDetails(details);
+        addFreelancerDetails(details,userAddress);
       }
       else
       {

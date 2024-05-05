@@ -4,10 +4,12 @@ import BannerImage from "../../Assets/home-banner.png";
 import Navbar from "./Navbar";
 import { FiArrowRight } from "react-icons/fi";
 import { useAuth } from "../../contexts/authUserContext"; // Corrected import path
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [metamaskInstalled, setMetamaskInstalled] = useState(false);
   const { setUserAddress, setIsAuthenticated,userAddress,isAuthenticated } = useAuth(); // Moved useAuth to top level
+  const navigate=useNavigate();
   useEffect(() => {
     setMetamaskInstalled(typeof window.ethereum !== "undefined");
   }, []);
@@ -15,6 +17,7 @@ const Home = () => {
   
   const connectMetamask = async () => {
     try {
+      
       // Check if MetaMask is installed
       if (window.ethereum) {
         // Request access to the user's MetaMask accounts
@@ -24,6 +27,7 @@ const Home = () => {
           // Update state or perform any other action indicating successful connection
           setUserAddress(accounts[0]); // Set the user address to the first account
           setIsAuthenticated(true); // Set isAuthenticated to true
+          navigate('/signup');
         } else {
           setUserAddress(null); // Set the user address to null
           setIsAuthenticated(false); // Set isAuthenticated to false

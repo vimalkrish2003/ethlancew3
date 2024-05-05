@@ -1,0 +1,108 @@
+.client-page {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.create-project-button {
+  display: inline-block;
+  background-color: #e4531a;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.create-project-button:hover {
+  background-color: #d8711d;
+}
+
+.project-list {
+  margin-top: 20px;
+}
+
+.project-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-box {
+  width: 45%; /* Set width to 45% to display only two projects in a row */
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-box h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.project-box p {
+  margin-bottom: 5px;
+}
+.project-button{
+ background-color: #e4531a;
+ height: 30px;
+ width: 100px;
+ border-radius: 10px;
+}
+.project-box:hover{
+  background-color: #dd6b08;
+  cursor: pointer; 
+}
+.project-details {
+  height: 200%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 20px auto;
+  max-width: 600px; /* Adjust width as needed */
+}
+
+.project-details h2 {
+  margin-bottom: 15px;
+}
+
+.project-details p {
+  margin-bottom: 10px;
+}
+
+.back-to-projects-button {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #dd6b08;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #333;
+  margin-top: 15px;
+}
+
+.back-to-projects-button:hover {
+  background-color: #700909;
+}
+.view-bids-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #dd6b08;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-bids-button:hover {
+  background-color: #dd6b08;
+}
+
+.bids-box {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
