@@ -14,23 +14,30 @@ const BidForm = ({ onSubmit }) => {
   const [proposal, setProposal] = useState('');
   const [projectDetails, setProjectDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [bidData, setBidData] = useState([]); // Add bidData state
   const { projectId } = useParams();
   const navigate = useNavigate();
   const abi = PlaceBidABI.abi;
+
   useEffect(() => {
     const fetchProjectDetails = async () => {
-      const details = await fetchProjectDetailsById(projectId);
-      setProjectDetails(details);
-      setIsLoading(false);
+      try {
+        const details = await fetchProjectDetailsById(projectId);
+        setProjectDetails(details);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching project details:', error);
+        setIsLoading(false);
+      }
     };
 
     fetchProjectDetails();
   }, [projectId]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  
-  
+
   const handleProposalChange = (e) => {
     setProposal(e.target.value);
   };
@@ -42,9 +49,7 @@ const BidForm = ({ onSubmit }) => {
   const handleBidAmountChange = (e) => {
     setBidAmount(e.target.value);
   };
-  
- const handleSubmit = async (e) => {
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     if (!window.ethereum) {
@@ -53,45 +58,50 @@ const BidForm = ({ onSubmit }) => {
     }
   
     try {
-      // Request MetaMask to connect
       await window.ethereum.request({ method: 'eth_requestAccounts' });
   
-      // Connect to Ethereum provider
       const web3 = new Web3(window.ethereum);
       const accounts = await web3.eth.getAccounts();
-      // Initialize contract instance
-      const contractAddress = '0x628cD4e2c1a93Da850E06B829d20d41a99d52168';
+      const contractAddress = '0xE9b7FC02F77c17aa99F8cC7a45A65cFBB31D3B40';
       const contract = new web3.eth.Contract(abi, contractAddress);
   
-      // Get the project ID from your state or another source
-      const projectId = 1; // Replace this with your project ID
-      const clientAddress = accounts[0]; // Assuming the client's address is the current account
-      const freelancerAddress = accounts[0]; // Replace this with the freelancer's address
+      const clientAddress = projectDetails.clientAddress;
+      const freelancerAddress = accounts[0];
+      const projectId = projectDetails.id;
+      console.log(clientAddress);
+      const deliveryTimeInt = deliveryTime;
+      const bidAmountInt = bidAmount;
   
-      // Call contract method to place bid with bidStatus set to Pending
+  
+      console.log("Parsed projectId:", projectId);
+      console.log("Parsed deliveryTime:", deliveryTimeInt);
+      console.log("Parsed bidAmount:", bidAmountInt);
+  
+      // if (isNaN(projectIdInt) || isNaN(deliveryTimeInt) || isNaN(bidAmountInt)) {
+      //   throw new Error('Invalid input values');
+      // }
+  
       await contract.methods.placeBid(
         projectId,
-        freelancerAddress,
+        clientAddress,
         proposal,
-        parseInt(deliveryTime),
-        parseInt(bidAmount),
+        deliveryTimeInt,
+        bidAmountInt,
         0
-      ).send({ from: clientAddress });
+      ).send({ from: freelancerAddress });
   
       toast.success('Bid placed successfully!');
   
-      // Retrieve and display bid data after placing the bid
       const updatedBidData = await getBidData(contract, projectId);
       setBidData(updatedBidData);
       console.log(updatedBidData);
-  
-      // navigate('/freelancerdashboard');
     } catch (error) {
-      console.error('Error placing bid: ', error);
+      console.error('Error placing bid:', error);
       toast.error('Failed to place bid: ' + error.message);
     }
   };
-    const OrangeButton = styled(Button)({
+  
+  const OrangeButton = styled(Button)({
     backgroundColor: '#fe9e0d',
     color: 'white',
     '&:hover': {
@@ -103,7 +113,7 @@ const BidForm = ({ onSubmit }) => {
     try {
       const bidsCount = await contract.methods.getBidsCount(projectId).call();
       console.log('Bids Count:', bidsCount);
-  
+
       const bids = [];
       for (let i = 0; i < bidsCount; i++) {
         const bid = await contract.methods.getBid(projectId, i).call();
@@ -113,19 +123,16 @@ const BidForm = ({ onSubmit }) => {
       console.log('Bids:', bids); // Log the bid data to the console
       return bids;
     } catch (error) {
-      console.error('Error retrieving bid data: ', error);
+      console.error('Error retrieving bid data:', error);
       toast.error('Failed to retrieve bid data: ' + error.message);
       return [];
     }
   };
-  
-  
+
   return (
     <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
       <Paper elevation={3} style={{ padding: '20px', maxWidth: '500px' }}>
-
         {/* Project Details */}
-          
         <Box mb={2} textAlign="center">
           <Typography variant="h6">{projectDetails.jobTitle}</Typography>
           <Typography>{projectDetails.projectOutline}</Typography>
@@ -134,7 +141,6 @@ const BidForm = ({ onSubmit }) => {
         </Box>
 
         {/* Bid Form */}
-
         <form onSubmit={handleSubmit}>
           <TextField
             label="Bid Amount ($)"
@@ -168,7 +174,6 @@ const BidForm = ({ onSubmit }) => {
             margin="normal"
             required
           />
-          {/* No need to include BidStatus field in the form since it's always Pending */}
           <OrangeButton type="submit" variant="contained" fullWidth>
             Submit Bid
           </OrangeButton>
