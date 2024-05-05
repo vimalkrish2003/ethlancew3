@@ -31,7 +31,7 @@
   }
   
   .bg-black {
-    background-color: #000;
+    background-color: #fe9e0d;
   }
   
   .bg-opacity-50 {
@@ -43,7 +43,7 @@
   }
   
   .shadow-green-500 {
-    box-shadow: 0px 4px 6px rgba(46, 213, 115, 0.5);
+    box-shadow: 0 4px 7px rgba(254, 158, 13, 0.5);
   }
   
   .rounded-xl {
@@ -80,6 +80,15 @@
   
   .text-xl {
     font-size: 1.25rem;
+    color: #fff;
+    text-align: center;
+    font-size: 34px;
+    width: 500px; /* Adjust width as needed */
+  height: 60px; /* Adjust height as needed */
+  border: 2px solid #fe9e0d; /* Add a border to create a box */
+  padding: 10px; /* Add padding for space inside the box */
+  margin: 0 auto;
+  background-color: #fe9e0d;
   }
   
   .mb-8 {
@@ -93,6 +102,8 @@
   
   .mb-5 {
     margin-bottom: 1.25rem;
+    
+
   }
   
   .flex-col {
@@ -105,10 +116,12 @@
   
   .rounded-md {
     border-radius: 0.375rem;
+
   }
   
   .mb-2 {
     margin-bottom: 0.5rem;
+    
   }
   
   .inline-flex {
@@ -155,7 +168,7 @@
   }
   
   .bg-green-500 {
-    background-color: #48bb78;
+    background-color:#fe9e0d;
   }
   
   .text-white {
@@ -175,7 +188,7 @@
     top: -0.5rem;
     right: -0.5rem;
   }
-  
+ 
   .text-sm {
     font-weight: bold;
   }
@@ -258,7 +271,7 @@
   background-color: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(254, 158, 13, 0.5);
 }
 .category-box{
   position: relative;
@@ -276,6 +289,6 @@
 
 /* Add styles for active skill items */
 .skill-item.active {
-  background-color: #48bb78;
+  background-color: #fe9e0d;
   color: #fff;
 }
