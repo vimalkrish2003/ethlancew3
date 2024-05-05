@@ -19,7 +19,7 @@ import ProjectDetails from "./components/client_landing/ProjectDetails";
 import Landing from "./components/intropage/landing";
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import Free from "./components/mainfree/FreelanceDashboard"
 
 
 function MetaMaskButton() {
@@ -115,14 +115,13 @@ function App() {
       ),
     },
     {
-      path: '/clientpage',
-      element: (
-        <ProtectedRoute>
-          <ClientPage />
-        </ProtectedRoute>
-      ),
+
+      path:'/filter',
+      element:( 
+        <Free/>
+      )
     },
-    {
+     {
       path: '/createproject',
       element: (
         <ProtectedRoute>
@@ -135,6 +134,14 @@ function App() {
       element: (
         <ProtectedRoute>
           <ProjectDetails />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: '/clientpage',
+      element: (
+        <ProtectedRoute>
+          <ClientPage />
         </ProtectedRoute>
       ),
     },
