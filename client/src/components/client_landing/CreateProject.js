@@ -4,7 +4,7 @@ import './createproject.css';
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
-import {db} from '/home/razalak/ethlancew3/client/src/firebase/firebaseConfig';
+import {db} from '../../firebase/firebaseConfig';
 
 const CreateProject = () => {
   const [jobTitle, setJobTitle] = useState('');
