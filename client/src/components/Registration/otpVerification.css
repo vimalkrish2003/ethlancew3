@@ -1,7 +1,8 @@
 /* otpverification.css */
 
 .bg-emerald-500 {
-  background-color: #10b981;
+  background-color: #fff ;
+ 
 }
 
 .flex {
@@ -46,10 +47,21 @@
 
 .text-center {
   text-align: center;
+ 
 }
-
-.text-white {
-  color: #fff;
+.font-bold {
+  color: black;
+  font-size: 18px;
+  padding-top: 20px;
+}
+.text-orange {
+  color: #fe9e0d;
+  font-size: 34px;
+  font-weight: bold;
+ 
+}
+.county-box{
+  box-shadow: 0 2px 5px rgba(254, 158, 13, 0.5);;
 }
 
 .text-xl {
@@ -69,13 +81,13 @@
   margin-right: auto;
 }
 
-.py-2.5 {
+.py-5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
 
 .bg-white {
-  background-color: #fff;
+  background-color: #fe9e0d;
 }
 
 .text-emerald-500 {
@@ -103,16 +115,21 @@
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  
 }
 
 .opt-container input {
   margin-right: 0;
   flex: 1;
   padding-top: 1.25rem;
+  box-shadow: 0 3px 6px rgba(254, 158, 13, 0.5); ;
 }
 
 .bg-emerald-600 {
-  background-color: #059669;
+  background-color: #fe9e0d;
+  border: 3px solid #fe9e0d;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .py-5 {
@@ -133,4 +150,29 @@
     transform: rotate(360deg);
   }
 }
+.phone-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fe9e0d;
+  width: 100px;
+  height: 100px; /* Increased size for the circle */
+  padding: 15px; /* Orange background color */
+}
 
+.phone-icon {
+  color: white;
+  margin:5px; /* White color for the phone icon */
+}
+
+.resend-button , .changenumber{
+  box-shadow: 0 2px 5px rgba(254, 158, 13, 0.5);
+  border: 3px solid #fe9e0d;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}

@@ -168,17 +168,17 @@ const OtpVerification = ({
           </h2>
         ) : (
           <div className="w-80 flex flex-col gap-4 rounded-lg p-4 flex-wrap justify-center items-center">
-            <h1 className="text-center leading-normal text-white font-medium text-3xl mb-6">
+            <h1 className="text-center leading-normal text-orange font-medium text-3xl mb-6">
               PHONE VERIFICATION
             </h1>
             {showOTP ? (
               <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                  <BsFillShieldLockFill size={30} />
+                <div className="phone-icon-container">
+                  <BsFillShieldLockFill size={30} className="phone-icon"/>
                 </div>
                 <label
                   htmlFor="otp"
-                  className="font-bold text-xl text-white text-center"
+                  className="font-bold text-xl text-black text-center"
                 >
                   Enter your OTP
                 </label>
@@ -200,23 +200,27 @@ const OtpVerification = ({
                   )}
                   <span>Verify OTP</span>
                 </button>
+                <div className="resend-button">
                 <button onClick={onChangeNumber}>Change Number</button>
-                <button onClick={onResendOTP}>Resend OTP</button>
+                </div>
+                <div className="changenumber">
+                <button  onClick={onResendOTP}>Resend OTP</button>
+                </div>
               </>
               
             ) : (
               <>
-                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
-                  <BsTelephoneFill size={30} />
+                <div className="phone-icon-container">
+                  <BsTelephoneFill size={30} className="phone-icon"/>
                 </div>
                 <label
                   htmlFor=""
                   className="font-bold te
-            ]=.xt-xl text-white text-center"
+            ]=.xt-xl text-black text-center"
                 >
                   Verify your phone number
                 </label>
-                <PhoneInput country={"in"} value={ph} onChange={setPh} />
+                <PhoneInput className= "county-box" country={"in"} value={ph} onChange={setPh} />
                 <button
                   onClick={onSignup}
                   className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-5 text-white rounded"
