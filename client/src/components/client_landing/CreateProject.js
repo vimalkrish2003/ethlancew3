@@ -5,10 +5,11 @@ import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import {db} from '../../firebase/firebaseConfig';
+import { useAuth } from "../../contexts/authUserContext";
 
 const CreateProject = () => {
   const [jobTitle, setJobTitle] = useState('');
-  const [prize, setPrize] = useState('');
+  const [maximumPay, setMaximumPay] = useState('');
   const [description, setDescription] = useState('');
   const [jobType, setJobType] = useState('');
   const [scope, setScope] = useState('');
@@ -17,6 +18,7 @@ const CreateProject = () => {
   const [projectOutline, setProjectOutline] = useState('');
   const [expectedDelivery, setExpectedDelivery] = useState('');
   const [selectedSkills, setSelectedSkills] = useState([]);
+  const { userAddress } = useAuth();
 
   const availableSkills = [
     'Web Development',
@@ -73,8 +75,9 @@ const CreateProject = () => {
     e.preventDefault();
     
     const projectData = {
+      clientAddress:userAddress,
       jobTitle,
-      prize,
+      maximumPay,
       description,
       jobType,
       scope,
@@ -174,12 +177,12 @@ const CreateProject = () => {
                 <label className='mb-2' htmlFor="desc">Expected Pay </label>
                 <input
                   id="number"
-                  value={prize}
+                  value={maximumPay}
                   placeholder="Mention total expected amount"
                   step={1}
                   type="text"
                   className="rounded-md text-sm"
-                  onChange={(e) => setPrize(e.target.value)}
+                  onChange={(e) => setMaximumPay(e.target.value)}
                   required
                 />
               </div>
