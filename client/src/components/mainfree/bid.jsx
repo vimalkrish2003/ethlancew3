@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField, Typography, Paper, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
+import { fetchProjectDetailsById } from '../../firebase/fetchDetails';
 
-const BidForm = ({ projectId, onSubmit }) => {
+const BidForm = ({ onSubmit }) => {
   const [bidAmount, setBidAmount] = useState('');
   const [deliveryTime, setDeliveryTime] = useState('');
   const [proposal, setProposal] = useState('');
+  const [projectDetails, setProjectDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { projectId } = useParams();
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      const details = await fetchProjectDetailsById(projectId);
+      setProjectDetails(details);
+      setIsLoading(false);
+    };
 
-  // Sample project details
-  const sampleProjectDetails = {
-    id:1,
-    title: 'Create a Website for E-commerce Store',
-    description: 'Build a responsive e-commerce website with product listings, cart functionality, and checkout.',
-    budget: '$5000 - $7000',
-    deadline: 'Deadline: 2 months',
-  };
-
+    fetchProjectDetails();
+  }, [projectId]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!bidAmount || !deliveryTime || !proposal) {
@@ -46,10 +53,10 @@ const BidForm = ({ projectId, onSubmit }) => {
       <Paper elevation={3} style={{ padding: '20px', maxWidth: '500px' }}>
         {/* Project Details */}
         <Box mb={2} textAlign="center">
-          <Typography variant="h6">{sampleProjectDetails.title}</Typography>
-          <Typography>{sampleProjectDetails.description}</Typography>
-          <Typography>{sampleProjectDetails.budget}</Typography>
-          <Typography>{sampleProjectDetails.deadline}</Typography>
+          <Typography variant="h6">{projectDetails.jobTitle}</Typography>
+          <Typography>{projectDetails.projectOutline}</Typography>
+          <Typography>{projectDetails.description}</Typography>
+          <Typography>{projectDetails.maximumPay}</Typography>
         </Box>
 
         {/* Bid Form */}
