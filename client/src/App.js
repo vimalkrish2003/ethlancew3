@@ -20,6 +20,7 @@ import Landing from "./components/intropage/landing";
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Free from "./components/mainfree/FreelanceDashboard"
+import BidForm from "./components/mainfree/bid";
 
 
 function MetaMaskButton() {
@@ -144,6 +145,13 @@ function App() {
           <ClientPage />
         </ProtectedRoute>
       ),
+    },
+    {
+
+      path:'/bid',
+      element:( 
+        <BidForm/>
+      )
     },
   ]);
 
