@@ -1,10 +1,12 @@
- import React, { useState } from 'react';
-import { FaTimes,FaExclamationTriangle  } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaTimes, FaExclamationTriangle } from 'react-icons/fa';
 import './createproject.css';
-import  { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import { collection, addDoc } from 'firebase/firestore';
+import {db} from '/home/razalak/ethlancew3/client/src/firebase/firebaseConfig';
+
 const CreateProject = () => {
- 
   const [jobTitle, setJobTitle] = useState('');
   const [prize, setPrize] = useState('');
   const [description, setDescription] = useState('');
@@ -13,34 +15,26 @@ const CreateProject = () => {
   const [experienceLevel, setExperienceLevel] = useState('');
   const [showSkillsDropdown, setShowSkillsDropdown] = useState(false);
   const [projectOutline, setProjectOutline] = useState('');
-  const [expectedDelivery, setExpectedDelivery] = useState(''); // New state for expected delivery
+  const [expectedDelivery, setExpectedDelivery] = useState('');
   const [selectedSkills, setSelectedSkills] = useState([]);
-    const availableSkills = [
-      'Web Development',
-      'Mobile App Development',
-      'Graphic Design',
-      'Data Entry',
-      'Content Writing',
-      'Digital Marketing',
-      'Photography',
-      'Video Editing',
-      'Customer Service',
-      'Sales',
-      'SEO/SEM',
-      'Project Management'
-    ];
-    const navigate = useNavigate();
-    const [projectData, setProjectData] = useState({
-      jobTitle: '',
-      prize: '',
-      description: '',
-      jobType: '',
-      scope: '',
-      experienceLevel: '',
-      projectOutline: '',
-      selectedSkillsskills: []
-    });
- 
+
+  const availableSkills = [
+    'Web Development',
+    'Mobile App Development',
+    'Graphic Design',
+    'Data Entry',
+    'Content Writing',
+    'Digital Marketing',
+    'Photography',
+    'Video Editing',
+    'Customer Service',
+    'Sales',
+    'SEO/SEM',
+    'Project Management'
+  ];
+
+  const navigate = useNavigate();
+
   const handleScopeChange = (value) => {
     setScope(value);
   };
@@ -48,14 +42,16 @@ const CreateProject = () => {
   const handleExperienceLevelChange = (value) => {
     setExperienceLevel(value);
   };
+
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
-   // Check if description meets minimum length requirement
   };
+
   const handleProjectOutlineChange = (e) => {
     const value = e.target.value;
     setProjectOutline(value);
   };
+
   const toggleSkillsDropdown = () => {
     setShowSkillsDropdown(!showSkillsDropdown);
   };
@@ -67,47 +63,45 @@ const CreateProject = () => {
       setSelectedSkills([...selectedSkills, skill]);
     }
   };
+
   const handleExpectedDeliveryChange = (e) => {
     setExpectedDelivery(e.target.value);
   };
+ 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    {
-      const regobj = {
-        jobTitle,
-        prize,
-        description,
-        jobType,
-        scope,
-        experienceLevel,
-        projectOutline,
-        selectedSkills,expectedDelivery
-      };
-  try {
-const response= await fetch("http://localhost:8000/user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(regobj)
-      })
-      if (response.ok) {
+    
+    const projectData = {
+      jobTitle,
+      prize,
+      description,
+      jobType,
+      scope,
+      experienceLevel,
+      projectOutline,
+      expectedDelivery,
+      selectedSkills
+    };
+  
+    try {
+      // Check if Firestore is initialized before using it
+      if (db) {
+        await addDoc(collection(db, 'projects'), projectData);
         console.log('Form data submitted successfully!');
-        const data = await response.json(); // Optionally, you can perform additional actions here after successful submission
         toast.success("Form data submitted successfully!");
         navigate('/clientpage'); // Redirect to clientpage after successful submission
       } else {
-        throw new Error('Failed to submit form data');
+        throw new Error('Firestore is not initialized');
       }
-    } catch (err) {
-      console.error("Error:", err);
-      toast.error("Failed: " + err.message);
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to submit form data: " + error.message);
     }
-  }
-};
-
-
-
-
-
+  };
+  
+  
+  
   return (
     <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white text-black shadow-md shadow-green-500 rounded-xl w-full max-w-md h-3 p-6 overflow-y-auto">
@@ -121,7 +115,7 @@ const response= await fetch("http://localhost:8000/user", {
           <div>
             <h3 className="text-xl font-bold mb-8">Create a Project</h3>
             <form className="" onSubmit={handleSubmit}>
-              <div className="mb-5 flex flex-col space-y4">
+            <div className="mb-5 flex flex-col space-y4">
                 <label className='mb-2' htmlFor="jt">Write a Job Title</label>
                 <input
                   id="jt"
@@ -345,17 +339,15 @@ Looking for comprehensive and deep expertise  in this field
                   </p>
       
               </div>
-<button type ='submit' className="btn btn-primary px-4 py-2 rounded-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-500 focus:ring-opacity-50"
-onClick={handleSubmit}>
-Create
-</button>
-
-</form>
-</div>
-</div>
-</div>
-</div>
-);
+              <button type='submit' className="btn btn-primary px-4 py-2 rounded-md text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                Create
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CreateProject;
