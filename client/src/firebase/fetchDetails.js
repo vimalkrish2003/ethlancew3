@@ -1,6 +1,6 @@
 //create a function to fetch project details from firebase
 import {db} from "./firebaseConfig";
-import {getDocs,collection} from "firebase/firestore";
+import {getDocs,collection,doc,getDoc} from "firebase/firestore";
 export async function fetchProjectDetails(){
     try {
         const querySnapshot = await getDocs(collection(db, "projects"));
@@ -15,4 +15,17 @@ export async function fetchProjectDetails(){
         return [];
     }
 }
-    
+export async function fetchProjectDetailsById(projectId){
+    const docRef = doc(db, "projects", projectId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return {
+            id: docSnap.id,
+            ...docSnap.data()
+        };
+    } else {
+        console.error("No such document");
+        return null;
+    }
+}

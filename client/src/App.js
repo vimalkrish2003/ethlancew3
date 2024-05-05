@@ -148,7 +148,7 @@ function App() {
     },
     {
 
-      path:'/bid',
+      path:'/bid/:projectId',
       element:( 
         <BidForm/>
       )

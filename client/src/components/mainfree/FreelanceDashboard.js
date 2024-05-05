@@ -116,7 +116,7 @@ const FreelancerDashboard = () => {
   }, [filters]);
 
   const handleBidClick = (projectId) => {
-   console.log("Bid clicked for project ID: ", projectId);  
+    navigate(`/bid/${projectId}`)
   };
 
   return (
