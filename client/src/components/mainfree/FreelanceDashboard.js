@@ -8,6 +8,7 @@ import { FilterList } from "@mui/icons-material";
 import Headerfree from "./nav";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import FreeHeader from "./nav";
+import { fetchProjectDetails } from "../../firebase/fetchDetails";
 
 const theme = createTheme({
   palette: {
@@ -94,27 +95,24 @@ const FreelancerDashboard = () => {
   };
 
   useEffect(() => {
-    // Fetch projects and apply filters
-    // Simulated project data
-    const allProjects = [
-      { id: 1, name: "Web Development Project 1", category: "Web Development", description: "Description of project 1" },
-      { id: 2, name: "Graphic Design Project 1", category: "Graphic Design", description: "Description of project 2" },
-      { id: 3, name: "Writing Project 1", category: "Writing", description: "Description of project 3" },
-      // Add more project data as needed
-    ];
-
-    // Apply filters
-    const filtered = allProjects.filter((project) => {
-      // Apply category filter
-      if (filters.categories && filters.categories.length > 0) {
-        if (!filters.categories.includes(project.category)) {
-          return false;
+    const fetchAndFilterProjects = async () => {
+      const projects = await fetchProjectDetails();
+      // Apply filters
+      const filtered = projects.filter((project) => {
+        // Apply category filter
+        if (filters.categories && filters.categories.length > 0) {
+          if (!filters.categories.includes(project.category)) {
+            return false;
+          }
         }
-      }
-      return true;
-    });
-
-    setProjects(filtered);
+        return true;
+      });
+  
+      setProjects(filtered);
+    };
+  
+    // Call the async function
+    fetchAndFilterProjects();
   }, [filters]);
 
   const handleBidClick = (projectId) => {
