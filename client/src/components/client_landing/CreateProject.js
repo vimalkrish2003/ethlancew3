@@ -119,13 +119,13 @@ const CreateProject = () => {
             <h3 className="text-xl font-bold mb-8">Create a Project</h3>
             <form className="" onSubmit={handleSubmit}>
             <div className="mb-5 flex flex-col space-y4">
-                <label className='mb-2' htmlFor="jt">Write a Job Title</label>
+                <label className='block mb-2 font-bold' htmlFor="jt">Write a Job Title</label>
                 <input
                   id="jt"
                   value={jobTitle}
-                  placeholder="e.g. logo designer..."
+                  placeholder="e.g. logo designer for EthLance..."
                   type="text"
-                  className="rounded-md text-sm"
+                  className="rounded-md focus:outline-none focus:ring-0 text-sm"
                   onChange={(e) => setJobTitle(e.target.value)}
                   required
                 />
@@ -180,7 +180,7 @@ const CreateProject = () => {
                   value={maximumPay}
                   placeholder="Mention total expected amount"
                   step={1}
-                  type="text"
+                  type="number"
                   className="rounded-md text-sm"
                   onChange={(e) => setMaximumPay(e.target.value)}
                   required

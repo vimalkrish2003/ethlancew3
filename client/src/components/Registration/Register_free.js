@@ -197,11 +197,11 @@ const RegisterFree = () => {
                                         <div className="form-group">
 
                                             <div class="upload-photo-container">
-                                                <img
-                                                    src={process.env.PUBLIC_URL + '/images/photo-icon.png'} // Access image using PUBLIC_URL
-                                                    alt="Upload Photo Icon"
-                                                    className="photo-icon"
-                                                />
+                                            <img
+    src={selectedPhoto ? URL.createObjectURL(selectedPhoto) : process.env.PUBLIC_URL + '/images/photo-icon.png'}
+    alt="Upload Photo Icon"
+    className="photo-icon"
+/>
                                                 <label for="profilePhoto" class="upload-photo-label">
                                                     <span class="upload-icon">+</span>
 
