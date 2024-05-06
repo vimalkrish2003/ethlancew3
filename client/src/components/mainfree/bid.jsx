@@ -62,7 +62,7 @@ const BidForm = ({ onSubmit }) => {
   
       const web3 = new Web3(window.ethereum);
       const accounts = await web3.eth.getAccounts();
-      const contractAddress = '0xE9b7FC02F77c17aa99F8cC7a45A65cFBB31D3B40';
+      const contractAddress = '0x040afA5071b2D3Ad2c8f4749d97e6e46a1b2B93f';
       const contract = new web3.eth.Contract(abi, contractAddress);
   
       const clientAddress = projectDetails.clientAddress;
