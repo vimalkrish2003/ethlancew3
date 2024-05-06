@@ -11,7 +11,7 @@ const ProjectDetails = () => {
     prize: "$100",
     expectedDelivery: "1 week"
   });
-  const [bids] = useState([
+  const [bids]  = useState([
     { 
       freelancer: "John Doe", 
       email: "john@example.com", 
