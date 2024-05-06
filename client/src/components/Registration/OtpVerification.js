@@ -16,6 +16,7 @@ import { useAuth } from "../../contexts/authUserContext";
 import { addClientDetails, addFreelancerDetails } from "../../firebase/addDetails";
 
 import './otpVerification.css';
+import { useNavigate } from "react-router-dom";
 
 
 const OtpVerification = ({ 
@@ -44,6 +45,7 @@ const OtpVerification = ({
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
   const { userAddress } = useAuth();
+  const navigate=useNavigate();
   console.log("inside otpverification :",username,name)
 
   function onCaptchVerify() {
@@ -94,7 +96,7 @@ const OtpVerification = ({
       const res = await window.confirmationResult.confirm(otp);
       console.log(res);
      setUser(res.user);
-      if (type=='client')
+      if (type==='client')
       {
         const details = {
           username: username,
@@ -108,8 +110,9 @@ const OtpVerification = ({
           phoneNo:ph
         };
         addClientDetails(details,userAddress);
+        navigate('/client');
       }
-      else if (type=='freelancer')
+      else if (type==='freelancer')
       {
         const details = {
           username,
@@ -133,10 +136,22 @@ const OtpVerification = ({
           degreeDomain
         };
         addFreelancerDetails(details,userAddress);
+        navigate('/filter');
       }
       else
       {
         console.log("User type neither freelancer nor client \n type: ",type,username);
+      }
+      switch (type) {
+        case 'freelancer':
+            navigate('/filter');
+            break;
+        case 'client':
+            navigate('/clientpage');
+            break;
+        default:
+            console.log("cannot route the user error");
+            break;
       }
       setLoading(false);
 
