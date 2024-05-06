@@ -6,7 +6,7 @@ import './ClientPage.css'
 const ProjectDetails = () => {
   const { projectId } = useParams(); // Get the projectId from the URL params
   const [project] = useState({
-    jobTitle: "Logo Design",
+    jobTitle: "Logo Designer",
     projectOutline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     prize: "$100",
     expectedDelivery: "1 week"
