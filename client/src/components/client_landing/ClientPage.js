@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link,  useNavigate } from "react-router-dom";
 import "./ClientPage.css";
 import Navbar from "./Header/Header";
+import {useAuth} from "../../contexts/authUserContext";
+import {fetchProjectDetailsByClient} from "../../firebase/fetchDetails";
 const ProjectCard = ({ project, onClick }) => {
   return (
     <div className="project-box" onClick={onClick}>  {/* Wrap entire card in a clickable element */}
@@ -15,51 +17,16 @@ const ProjectCard = ({ project, onClick }) => {
 const ClientPage = ({ location }) => {
   // Check if location or state is undefined, then default to empty object and empty string respectively
   const username = location?.state?.username || "";
-  const [projects, setProjects] = useState([
-    {
-      id: 1,
-      jobTitle: " Logo Desginer for EthLance",
-      projectOutline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      rate: "100",
-      expectedDelivery:"1 week"
-    },
-    {
-      id: 2,
-      jobTitle: "Video Editing",
-      projectOutline: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      rate: "200",
-      expectedDelivery:"1 month"
-    },
-    {
-      id: 3,
-      jobTitle: " Logo Desgining for Shopify",
-      projectOutline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      rate: "100",
-      expectedDelivery:"1 week"
-    },
-     
-    // Add more dummy projects as needed
-  ]);
-  
+  const [projects, setProjects] = useState([]);
+  const {userAddress} = useAuth();
   useEffect(() => {
-    fetchProjects();
+    async function fetchData() {
+      const projectdetails = await fetchProjectDetailsByClient(userAddress);
+      setProjects(projectdetails || []);
+    }
+    fetchData();
   }, []); // Empty dependency array to run this effect only once when the component mounts
 
-  // Function to fetch the list of projects from the backend
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch("http://localhost:8000/user");
-      if (response.ok) {
-        const data = await response.json();
-        const projectData = data.user.filter((entry) => entry.jobTitle);
-        setProjects(projectData);// Update the projects state with the fetched data
-      } else {
-        throw new Error("Failed to fetch projects");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
 const navigate = useNavigate();
   // Function to handle button click and navigate to project details page
   const handleProjectClick = (projectId) => {
