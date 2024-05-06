@@ -9,6 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useAuth } from "../../contexts/authUserContext";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -52,11 +53,13 @@ const sampleBids = [
 const MyBidsPage = ({ freelancerAddress }) => {
   const classes = useStyles();
   const [bids, setBids] = useState([]);
+  const {userAddress}=useAuth();
 
   useEffect(() => {
     // Filter bids for the current freelancer
     const filteredBids = sampleBids.filter((bid) => bid.freelancerAddress === freelancerAddress);
     setBids(filteredBids);
+    console.log(userAddress);
   }, [freelancerAddress]);
 
   const getStatusLabel = (statusFlag) => {
