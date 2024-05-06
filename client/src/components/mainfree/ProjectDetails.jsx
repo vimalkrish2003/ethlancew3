@@ -1,46 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchProjectDetailsById } from '../../firebase/fetchDetails';
 
-const ProjectDetails = ({ projectId }) => {
+const ProjectDetails = () => {
   const [project, setProject] = useState(null);
   const [error, setError] = useState(null);
   const [bidAmount, setBidAmount] = useState('');
   const [bidSubmitted, setBidSubmitted] = useState(false);
+  const [projectDetails, setProjectDetails] = useState(null);
 
-  // Sample project data
-  const sampleProjects = [
-    { id: 1, name: "Project 1", description: "Description of Project 1" },
-    { id: 2, name: "Project 2", description: "Description of Project 2" },
-    // Add more sample projects as needed
-  ];
+  const { projectId } = useParams();
 
-  const fetchProjectData = () => {
-    try {
-      // Find the project with matching ID
-      const foundProject = sampleProjects.find(proj => proj.id === projectId);
-      if (!foundProject) {
-        throw new Error('Project not found');
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      try {
+        const details = await fetchProjectDetailsById(projectId);
+        setProject(details);
+        setProjectDetails(details); // Set projectDetails here
+      } catch (error) {
+        console.error('Error fetching project details:', error);
+        setError('Failed to fetch project data');
       }
-      setProject(foundProject);
-    } catch (error) {
-      console.error('Error fetching project data:', error);
-      setError('Failed to fetch project data');
-    }
-  };
+    };
+
+    fetchProjectDetails();
+  }, [projectId]);
 
   const handleBidSubmit = (e) => {
     e.preventDefault();
+   
     // Here, you can handle the bid submission logic, such as sending the bid amount to the server
     console.log('Bid submitted:', bidAmount);
     setBidSubmitted(true);
   };
-
-  useEffect(() => {
-    fetchProjectData();
-  }, [projectId]);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   if (!project) {
     return <div>Loading...</div>;
@@ -48,8 +40,8 @@ const ProjectDetails = ({ projectId }) => {
 
   return (
     <div>
-      <h2>{project.name}</h2>
-      <p>{project.description}</p>
+      <h2>{projectDetails.projectOutline}</h2>
+      <p>{projectDetails.description}</p>
       {/* Render other project details here */}
       {bidSubmitted ? (
         <div>Bid submitted successfully!</div>
