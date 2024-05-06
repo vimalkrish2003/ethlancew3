@@ -119,8 +119,11 @@ function App() {
     {
 
       path:'/filter',
-      element:( 
-        <Free/>
+      element:(
+        <ProtectedRoute>
+          <Free/>
+        </ProtectedRoute> 
+        
       )
     },
      {
@@ -151,7 +154,9 @@ function App() {
 
       path:'/bid/:projectId',
       element:( 
+        <ProtectedRoute>
         <BidForm/>
+        </ProtectedRoute>
       )
     },
     {
@@ -165,7 +170,9 @@ function App() {
 
       path:'/mybids',
       element:( 
+        <ProtectedRoute>
         <MyBidsPage/>
+        </ProtectedRoute>
       )
     },
   ]);
