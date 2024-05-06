@@ -38,8 +38,8 @@
   padding: 1%;
 }
 a{
-  text-decoration: none !important;
-  color: white !important;
+  text-decoration: none ;
+  color: white;
   padding: 2px;
 }
 app-check{

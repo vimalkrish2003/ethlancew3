@@ -19,7 +19,7 @@
   }
   
   /* Centered heading */
-  h2 {
+  .centered-heading {
     font-size: 34px;
     margin-bottom: 20px;
     text-align: center;

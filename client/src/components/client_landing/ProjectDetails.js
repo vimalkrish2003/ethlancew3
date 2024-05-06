@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import './ClientPage.css'
@@ -31,7 +32,7 @@ const ProjectDetails = () => {
     }
   ]);
   const [showBids, setShowBids] = useState(false); // State to store the project data
-
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false); 
   // Function to handle button click and toggle visibility of bids
   const handleViewBids = () => {
     setShowBids(!showBids);
@@ -45,6 +46,10 @@ const ProjectDetails = () => {
       <p>Description: {project.projectOutline}</p>
       <p>Prize: {project.prize}</p>
       <p>Expected Delivery: {project.expectedDelivery}</p>
+      {isPaymentSuccessful ? (
+        <button className="verify-project-button">Verify Project</button>
+      ) : (
+        <div>
       <button onClick={handleViewBids} className="view-bids-button">
         {showBids ? "Hide Bids" : "View Bids"}
       </button>
@@ -72,6 +77,7 @@ const ProjectDetails = () => {
           ))}
         </div>
       )}
+      </div>)}
       <Link to={`/clientpage`} className="back-to-projects-button">Back to Projects</Link>
     </div>
   );

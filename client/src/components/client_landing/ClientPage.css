@@ -21,7 +21,11 @@
 .project-list {
   margin-top: 20px;
 }
-
+.project-list h2{
+  color: #e48f0f;
+  padding-left: 210px;
+  font-size: 24px;
+}
 .project-container {
   display: flex;
   justify-content: center;
@@ -40,6 +44,11 @@
 .project-box h3 {
   margin-bottom: 10px;
   font-size: 18px;
+  
+}
+.project-details h2{
+  color: #fe9e0d;
+  font-size: 34px;
 }
 
 .project-box p {
@@ -59,17 +68,23 @@
   height: 200%;
   padding: 20px;
   border: 1px solid #ddd;
+  box-shadow: 0 4px 5px rgba(254, 158, 13, 0.5);;
   border-radius: 5px;
-  margin: 20px auto;
-  max-width: 600px; /* Adjust width as needed */
+  margin: 50px auto;
+  max-width: 800px; /* Adjust width as needed */
 }
 
 .project-details h2 {
-  margin-bottom: 15px;
+  text-align: center; /* Center the title */
+  margin-bottom: 20px;
+}
+.project-details h3 {
+  font-size: 18px; /* Adjust heading size as needed */
+  margin-bottom: 10px; /* Add some space after subheading */
 }
 
 .project-details p {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .back-to-projects-button {
@@ -79,59 +94,72 @@
   border: 1px solid #ddd;
   border-radius: 3px;
   color: #333;
-  margin-top: 15px;
+  margin-top: 20px;
+  display:block;
+  text-align: center;
 }
 
 .back-to-projects-button:hover {
   background-color: #700909;
 }
-.view-bids-button {
+.view-bids-button,.verify-project-button {
   margin-top: 20px;
-  padding: 12px 20px;
+  padding: 10px 20px;
   background-color: #dd6b08;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .view-bids-button:hover {
-  background-color: #dd6b08;
+  background-color: #a0500a;
 }
-
+.verify-project-button:hover{
+  background-color: #994c09;
+}
 .bids-box {
   margin-top: 20px;
   padding: 10px;
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
+  box-shadow: 0 2px 5px rgba(254, 158, 13, 0.5);
   border-radius: 5px;
 }
+.bids-box h3 {
+  margin-bottom: 15px; /* Space after the subheading */
+}
 .bid-box {
+  display:flex;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-top: 10px;
+  margin-bottom: 15px; /* Space between bids */
+  border-bottom: 1px solid #eee;
 }
 .bid-info {
   display: flex;
   align-items: center; /* Align items vertically in the flex container */
 }
 .profile-icon-circle {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 50px;
   margin-right: 10px; /* Add margin to create space between the circle and text */
 }
 .profile-icon {
  font-size: 20px; /* Add margin to create space between the icon and text */
 }
 .hire-button-container {
-  text-align:end;
+  text-align:right;
   margin-top: 10px;
+  flex:1;
 }
 
 .hire-button {
@@ -139,7 +167,7 @@
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 16px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 

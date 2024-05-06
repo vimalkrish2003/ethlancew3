@@ -26,7 +26,7 @@
   font-weight: 600;
 }
 .navbar-links-container a:hover {
-  color: #fe9e0d !important; /* Change color on hover */
+  color: #fe9e0d ; /* Change color on hover */
 }
 /* Navbar menu icon */
 .navbar-menu-container {
