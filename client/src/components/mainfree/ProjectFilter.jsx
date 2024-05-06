@@ -45,11 +45,9 @@ const useStyles = makeStyles((theme) => ({
 const ProjectFilter = ({ applyFilters, onClose }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [filters, setFilters] = useState({
-    categories: [],
-    location: "",
-    skills: "",
+    categories:[],
     expertiseLevel: "",
-    rateRange: [0, 100],
+    rateRange: [0, 10000],
     availability: "",
   });
   const classes = useStyles({ isOpen });
@@ -70,19 +68,19 @@ const ProjectFilter = ({ applyFilters, onClose }) => {
   };
 
   const handleClearFilters = () => {
-    setFilters({
-      categories: [],
-      location: "",
-      skills: "",
+    const clearedFilters = {
+      categories:[],
       expertiseLevel: "",
-      rateRange: [0, 100],
+      rateRange: [0, 10000],
       availability: "",
-    });
-    applyFilters({});
+    };
+    setFilters(clearedFilters);
+    applyFilters(clearedFilters); // Apply cleared filters
     setIsOpen(false);
     onClose();
     localStorage.removeItem("filters"); // Remove stored filters from localStorage
   };
+  
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.name;
@@ -104,29 +102,15 @@ const ProjectFilter = ({ applyFilters, onClose }) => {
         {/* Category filter */}
         <div className={classes.filterSection}>
           <Typography variant="subtitle1">Category</Typography>
-          <FormControlLabel
-            control={<Checkbox checked={filters.categories.includes("Web Development")} onChange={handleCategoryChange} name="Web Development" />}
-            label="Web Development"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={filters.categories.includes("Graphic Design")} onChange={handleCategoryChange} name="Graphic Design" />}
-            label="Graphic Design"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={filters.categories.includes("Writing")} onChange={handleCategoryChange} name="Writing" />}
-            label="Writing"
-          />
+          {["Web Development", "Graphic Design", "Data Entry", "Content Writing", "Digital Marketing", "Video Editing"].map((category) => (
+            <FormControlLabel
+              key={category}
+              control={<Checkbox checked={filters.categories.includes(category)} onChange={handleCategoryChange} name={category} />}
+              label={category}
+            />
+          ))}
         </div>
-        {/* Skills filter */}
-        <div className={classes.filterSection}>
-          <Typography variant="subtitle1">Skills</Typography>
-          <TextField
-            fullWidth
-            value={filters.skills}
-            onChange={(e) => setFilters({ ...filters, skills: e.target.value })}
-            placeholder="Enter skills..."
-          />
-        </div>
+        
         {/* Expertise Level filter */}
         <div className={classes.filterSection}>
           <Typography variant="subtitle1">Expertise Level</Typography>
@@ -151,21 +135,21 @@ const ProjectFilter = ({ applyFilters, onClose }) => {
             valueLabelDisplay="auto"
             aria-labelledby="range-slider"
             min={0}
-            max={100}
+            max={10000}
           />
         </div>
         {/* Availability filter */}
         <div className={classes.filterSection}>
-          <Typography variant="subtitle1">Availability</Typography>
+          <Typography variant="subtitle1">Duration</Typography>
           <FormControl fullWidth>
             <Select
               value={filters.availability}
               onChange={(e) => setFilters({ ...filters, availability: e.target.value })}
             >
               <MenuItem value="">All</MenuItem>
-              <MenuItem value="Immediate">Immediate</MenuItem>
-              <MenuItem value="Part-time">Part-time</MenuItem>
-              <MenuItem value="Full-time">Full-time</MenuItem>
+              <MenuItem value="long-term">Long term</MenuItem>
+              <MenuItem value="short-term">Short term</MenuItem>
+              
             </Select>
           </FormControl>
         </div>
