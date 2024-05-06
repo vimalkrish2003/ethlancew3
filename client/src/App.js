@@ -120,9 +120,9 @@ function App() {
 
       path:'/filter',
       element:(
-        //<ProtectedRoute>
+        <ProtectedRoute>
           <Free/>
-        //</ProtectedRoute> 
+        </ProtectedRoute> 
         
       )
     },
