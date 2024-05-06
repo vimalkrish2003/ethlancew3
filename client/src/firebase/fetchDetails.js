@@ -58,3 +58,21 @@ export async function fetchClientDetails(clientAddress) {
         return null;
     }
 }
+
+//function to check if the userAddress is a client or a freelancer
+export async function checkUserType(userAddress) {
+    const clientDocRef = doc(db, "clients", userAddress);
+    const freelancerDocRef = doc(db, "freelancers", userAddress);
+
+    const clientDocSnap = await getDoc(clientDocRef);
+    const freelancerDocSnap = await getDoc(freelancerDocRef);
+
+    if (clientDocSnap.exists()) {
+        return 'client';
+    } else if (freelancerDocSnap.exists()) {
+        console.log("freelancer");
+        return 'freelancer';
+    } else {
+        return 'addUser';
+    }
+}
