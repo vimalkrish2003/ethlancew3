@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { FiArrowRight } from "react-icons/fi";
 import { useAuth } from "../../contexts/authUserContext"; // Corrected import path
 import { useNavigate } from "react-router-dom";
+import { checkUserType } from "../../firebase/fetchDetails";
 
 const Home = () => {
   const [metamaskInstalled, setMetamaskInstalled] = useState(false);
@@ -27,7 +28,23 @@ const Home = () => {
           // Update state or perform any other action indicating successful connection
           setUserAddress(accounts[0]); // Set the user address to the first account
           setIsAuthenticated(true); // Set isAuthenticated to true
-          navigate('/signup');
+          const type = await checkUserType(accounts[0]);
+
+          switch (type) {
+              case 'freelancer':
+                  navigate('/filter');
+                  break;
+              case 'client':
+                  navigate('/clientpage');
+                  break;
+              case 'addUser':
+                  navigate('/signup');
+                  break;
+              default:
+                  console.log("cannot route the user error");
+                  break;
+          }
+          
         } else {
           setUserAddress(null); // Set the user address to null
           setIsAuthenticated(false); // Set isAuthenticated to false
