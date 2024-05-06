@@ -1,16 +1,12 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import './ClientPage.css'
+import {fetchProjectDetailsById} from "../../firebase/fetchDetails"
 
 const ProjectDetails = () => {
   const { projectId } = useParams(); // Get the projectId from the URL params
-  const [project] = useState({
-    jobTitle: "Logo Design",
-    projectOutline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    prize: "$100",
-    expectedDelivery: "1 week"
-  });
+  const [project,setProject] = useState([]);
   const [bids] = useState([
     { 
       freelancer: "John Doe", 
@@ -32,7 +28,13 @@ const ProjectDetails = () => {
     }
   ]);
   const [showBids, setShowBids] = useState(false); // State to store the project data
-
+  useEffect(() => {
+    async function fetchData() {
+      const projectdetails = await fetchProjectDetailsById(projectId);
+      setProject(projectdetails || []);
+    }
+    fetchData();
+  },[]);
   // Function to handle button click and toggle visibility of bids
   const handleViewBids = () => {
     setShowBids(!showBids);
@@ -44,7 +46,7 @@ const ProjectDetails = () => {
       <h2>Project Details</h2>
       <h3>{project.jobTitle}</h3>
       <p>Description: {project.projectOutline}</p>
-      <p>Prize: {project.prize}</p>
+      <p>Maximum Pay: {project.maximumPay}</p>
       <p>Expected Delivery: {project.expectedDelivery}</p>
       <button onClick={handleViewBids} className="view-bids-button">
         {showBids ? "Hide Bids" : "View Bids"}
