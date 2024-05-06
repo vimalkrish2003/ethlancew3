@@ -5,7 +5,7 @@
 
 .create-project-button {
   display: inline-block;
-  background-color: #e4531a;
+  background-color: #fe9e0d;
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
@@ -15,7 +15,7 @@
 }
 
 .create-project-button:hover {
-  background-color: #d8711d;
+  background-color: #e48f0f;
 }
 
 .project-list {
@@ -34,7 +34,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(254, 158, 13, 0.5);
 }
 
 .project-box h3 {
@@ -46,13 +46,13 @@
   margin-bottom: 5px;
 }
 .project-button{
- background-color: #e4531a;
+ background-color: #1c0f0a;
  height: 30px;
  width: 100px;
  border-radius: 10px;
 }
 .project-box:hover{
-  background-color: #dd6b08;
+  background-color: #e48f0f;
   cursor: pointer; 
 }
 .project-details {
@@ -87,11 +87,11 @@
 }
 .view-bids-button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background-color: #dd6b08;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -105,4 +105,44 @@
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
   border-radius: 5px;
+}
+.bid-box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.bid-info {
+  display: flex;
+  align-items: center; /* Align items vertically in the flex container */
+}
+.profile-icon-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Add margin to create space between the circle and text */
+}
+.profile-icon {
+ font-size: 20px; /* Add margin to create space between the icon and text */
+}
+.hire-button-container {
+  text-align:end;
+  margin-top: 10px;
+}
+
+.hire-button {
+  background-color: #dd6b08;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.hire-button:hover {
+  background-color: #802909;
 }

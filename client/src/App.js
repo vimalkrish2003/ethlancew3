@@ -21,7 +21,7 @@ import Landing from "./components/intropage/landing";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Free from "./components/mainfree/FreelanceDashboard"
 import BidForm from "./components/mainfree/bid";
-
+import PaymentPage from "./components/payment/Payment";
 
 function MetaMaskButton() {
   const { setUserAddress, setIsAuthenticated } = useAuth();
@@ -148,9 +148,16 @@ function App() {
     },
     {
 
-      path:'/bid',
+      path:'/bid/:projectId',
       element:( 
         <BidForm/>
+      )
+    },
+    {
+
+      path:'/payment/:projectId',
+      element:( 
+        <PaymentPage/>
       )
     },
   ]);

@@ -145,8 +145,9 @@ const FreelancerDashboard = () => {
   
 
   const handleBidClick = (projectId) => {
-    // Handle bid click
-  };
+    
+         navigate(`/bid/${projectId}`)
+};
 
   return (
     <div className={classes.container}>
@@ -174,6 +175,7 @@ const FreelancerDashboard = () => {
           {projects.map((project) => (
             <Grid item xs={12} key={project.id}>
               <Box className={classes.projectItem}>
+
                 <Typography variant="h6">{project.projectOutline}</Typography>
                 <Typography>{project.jobTitle}</Typography>
                 <Typography>{project.maximumPay}</Typography>
