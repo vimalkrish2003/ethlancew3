@@ -1,63 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchProjectDetailsById } from '../../firebase/fetchDetails';
+
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import './ClientPage.css'
 
 const ProjectDetails = () => {
-  const [project, setProject] = useState(null);
-  const [error, setError] = useState(null);
-  const [bidAmount, setBidAmount] = useState('');
-  const [bidSubmitted, setBidSubmitted] = useState(false);
-  const [projectDetails, setProjectDetails] = useState(null);
-
-  const { projectId } = useParams();
-
-  useEffect(() => {
-    const fetchProjectDetails = async () => {
-      try {
-        const details = await fetchProjectDetailsById(projectId);
-        setProject(details);
-        setProjectDetails(details); // Set projectDetails here
-      } catch (error) {
-        console.error('Error fetching project details:', error);
-        setError('Failed to fetch project data');
-      }
-    };
-
-    fetchProjectDetails();
-  }, [projectId]);
-
-  const handleBidSubmit = (e) => {
-    e.preventDefault();
-   
-    // Here, you can handle the bid submission logic, such as sending the bid amount to the server
-    console.log('Bid submitted:', bidAmount);
-    setBidSubmitted(true);
+  const { projectId } = useParams(); // Get the projectId from the URL params
+  const [project] = useState({
+    jobTitle: "Logo Design",
+    projectOutline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    prize: "$100",
+    expectedDelivery: "1 week"
+  });
+  const [bids] = useState([
+    { 
+      freelancer: "John Doe", 
+      email: "john@example.com", 
+      country: "USA", 
+      amount: "$80" 
+    },
+    { 
+      freelancer: "Jane Smith", 
+      email: "jane@example.com", 
+      country: "Canada", 
+      amount: "$90" 
+    },
+    { 
+      freelancer: "Michael Johnson", 
+      email: "michael@example.com", 
+      country: "UK", 
+      amount: "$95" 
+    }
+  ]);
+  const [showBids, setShowBids] = useState(false); // State to store the project data
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false); 
+  // Function to handle button click and toggle visibility of bids
+  const handleViewBids = () => {
+    setShowBids(!showBids);
   };
 
-  if (!project) {
-    return <div>Loading...</div>;
-  }
-
+  // Render project details and bids
   return (
-    <div>
-      <h2>{projectDetails.projectOutline}</h2>
-      <p>{projectDetails.description}</p>
-      {/* Render other project details here */}
-      {bidSubmitted ? (
-        <div>Bid submitted successfully!</div>
+    <div className="project-details">
+      <h2>Project Details</h2>
+      <h3>{project.jobTitle}</h3>
+      <p>Description: {project.projectOutline}</p>
+      <p>Prize: {project.prize}</p>
+      <p>Expected Delivery: {project.expectedDelivery}</p>
+      {isPaymentSuccessful ? (
+        <button className="verify-project-button">Verify Project</button>
       ) : (
-        <form onSubmit={handleBidSubmit}>
-          <label>
-            Bid Amount:
-            <input 
-              type="number" 
-              value={bidAmount} 
-              onChange={(e) => setBidAmount(e.target.value)} 
-            />
-          </label>
-          <button type="submit">Submit Bid</button>
-        </form>
+        <div>
+      <button onClick={handleViewBids} className="view-bids-button">
+        {showBids ? "Hide Bids" : "View Bids"}
+      </button>
+      {showBids && (
+        <div className="bids-box">
+          <h3>Bids for {project.jobTitle}</h3>
+          {/* Render bid details */}
+          {bids.map((bid, index) => (
+            <div className="bid-box" key={index}>
+              <div className="bid-info">
+              <div className="profile-icon-circle">
+                <span className="profile-icon">👤</span>
+                </div>
+                <p>Freelancer: {bid.freelancer}</p>
+                </div>
+                <div>
+                <p>Email: {bid.email}</p>
+                <p>Country: {bid.country}</p>
+                <p>Bid Amount: {bid.amount}</p>
+              </div>
+              <div className="hire-button-container">
+              <Link to={`/payment/${projectId}`} className="hire-button">Hire</Link>
+    </div>
+            </div>
+          ))}
+        </div>
       )}
+      </div>)}
+      <Link to={`/clientpage`} className="back-to-projects-button">Back to Projects</Link>
     </div>
   );
 };
