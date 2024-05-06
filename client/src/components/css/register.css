@@ -39,7 +39,11 @@
 }
 a{
   text-decoration: none ;
+
+  color: white;
+
   color: white ;
+
   padding: 2px;
 }
 app-check{

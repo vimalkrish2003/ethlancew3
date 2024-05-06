@@ -1,0 +1,85 @@
+/* payment.css */
+
+.payment-container {
+    display: flex; /* Center elements horizontally */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Align content horizontally in center */
+    width: 500px; /* Adjust width as needed */
+    margin: 50px auto; /* Add margin for spacing */
+    padding: 20px; /* Add padding for content area */
+    border: 1px solid #ddd; /* Add a light border */
+    box-shadow: 0 4px 5px rgba(254, 158, 13, 0.5);;
+    border-radius: 5px; /* Add rounded corners */
+  }
+  
+  .payment-box {
+    
+    background-color: #f0f0f0; 
+    padding: 10px 20px;
+    border-radius: 5px; /* Add rounded corners */
+    margin-bottom: 20px; /* Add some space after the box */
+  }
+  
+  .payment-box--primary { 
+   
+    background-color:#fe9e0d; 
+    width:100%;
+    height:60px;/* Slightly different background for primary */
+  }
+  h2{
+    color: white;
+    padding-top:10px;
+  }
+  
+  .payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add space between details */
+  }
+  
+  .payment-detail {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .payment-detail__label {
+    font-weight: bold;
+    flex: 0 0 30%; /* Set width for label (adjust as needed) */
+  }
+  
+  .payment-detail__value {
+    flex: 1; /* Allow value to fill remaining space */
+  }
+  
+  .payment-button,
+  .cancel-button {
+    margin-top: 20px; /* Space between buttons and content */
+    text-align: center;
+  }
+  
+  .payment-button button,
+  .cancel-button button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .payment-button button {
+    background-color: #fe9e0d; /* Green for payment button */
+    color: white;
+  }
+
+  .payment-button button:hover{
+    background-color: #e48f0f;
+  }
+  .cancel-button button {
+    background-color: #f0ad4e; /* Orange for cancel button */
+    color: white;
+  }
+  
+  .cancel-button button:hover {
+    background-color: #893609; /* Lighter orange on hover */
+  }
+  
