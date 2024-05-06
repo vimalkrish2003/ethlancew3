@@ -3,7 +3,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import "./ClientPage.css";
 import Navbar from "./Header/Header";
 import {useAuth} from "../../contexts/authUserContext";
-import {fetchProjectDetailsByClient} from "../../firebase/fetchDetails";
+import {fetchProjectDetailsByClient,fetchClientDetails} from "../../firebase/fetchDetails";
 const ProjectCard = ({ project, onClick }) => {
   return (
     <div className="project-box" onClick={onClick}>  {/* Wrap entire card in a clickable element */}
@@ -18,10 +18,13 @@ const ClientPage = ({ location }) => {
   // Check if location or state is undefined, then default to empty object and empty string respectively
   const username = location?.state?.username || "";
   const [projects, setProjects] = useState([]);
+  const [client,setClinet]=useState([]);
   const {userAddress} = useAuth();
   useEffect(() => {
     async function fetchData() {
       const projectdetails = await fetchProjectDetailsByClient(userAddress);
+      const clientdetails = await fetchClientDetails(userAddress);
+      setClinet(clientdetails);
       setProjects(projectdetails || []);
     }
     fetchData();
@@ -39,7 +42,7 @@ const navigate = useNavigate();
         <div>
           <Navbar/>
         </div>
-        <h1>Welcome, {username || "Guest"}!</h1>
+        <h1>Welcome, {client.name || "Guest"}!</h1>
         <p>This is your dashboard where you can manage your projects.</p>
         <Link to="/createproject" className="create-project-button">
           Create New Project

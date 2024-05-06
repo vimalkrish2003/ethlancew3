@@ -43,3 +43,18 @@ export async function fetchProjectDetailsByClient(clientAddress) {
         return null;
     }
 }
+
+export async function fetchClientDetails(clientAddress) {
+    const docRef = doc(db, "clients", clientAddress);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return {
+            id: docSnap.id,
+            ...docSnap.data()
+        };
+    } else {
+        console.error("No such document");
+        return null;
+    }
+}
