@@ -45,7 +45,7 @@ const FreeHeader = () => {
       <div className="navbar-links-container">
        
         <a href="#home">Home</a>
-        <a href="#bids">My Bids</a>
+        <a href="/mybids">My Bids</a>
         <a href="#profile"><CgProfile/></a>
        
         

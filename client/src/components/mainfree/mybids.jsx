@@ -3,64 +3,50 @@ import {
   Typography,
   Card,
   CardContent,
-  CardHeader,
   Grid,
-  Divider,
-  Paper,
+  Slide,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useAuth } from "../../contexts/authUserContext";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    padding: "16px",
-  },
-  card: {
-    marginBottom: "16px",
-  },
-}));
 
 const sampleBids = [
   {
     projectId: "1",
     clientAddress: "123 Main St, City",
-    freelancerAddress: "456 Elm St, City", // Unique key representing freelancer
+    freelancerAddress: "sdadada",
     proposal: "I will create a modern and responsive design.",
     deliveryTime: "2 weeks",
     bidAmount: "$1000",
-    statusFlag: 0, // Pending
+    statusFlag: 0,
   },
   {
     projectId: "2",
     clientAddress: "789 Oak St, City",
-    freelancerAddress: "101 Pine St, City", // Unique key representing freelancer
+    freelancerAddress: "101 Pine St, City",
     proposal: "I will provide 3 unique logo concepts.",
     deliveryTime: "1 week",
     bidAmount: "$500",
-    statusFlag: 1, // Accepted
+    statusFlag: 1,
   },
   {
     projectId: "3",
     clientAddress: "222 Maple St, City",
-    freelancerAddress: "333 Cedar St, City", // Unique key representing freelancer
+    freelancerAddress: "333 Cedar St, City",
     proposal: "I will deliver high-quality content.",
     deliveryTime: "3 days",
     bidAmount: "$300",
-    statusFlag: -1, // Rejected
+    statusFlag: -1,
   },
 ];
 
-const MyBidsPage = ({ freelancerAddress }) => {
-  const classes = useStyles();
+const MyBidsPage = () => {
   const [bids, setBids] = useState([]);
-  const {userAddress}=useAuth();
 
   useEffect(() => {
-    // Filter bids for the current freelancer
-    const filteredBids = sampleBids.filter((bid) => bid.freelancerAddress === freelancerAddress);
+    const userAddress = "sdadada"; // Sample user address
+    const filteredBids = sampleBids.filter(
+      (bid) => bid.freelancerAddress === userAddress
+    );
     setBids(filteredBids);
-    console.log(userAddress);
-  }, [freelancerAddress]);
+  }, []);
 
   const getStatusLabel = (statusFlag) => {
     switch (statusFlag) {
@@ -76,39 +62,32 @@ const MyBidsPage = ({ freelancerAddress }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" gutterBottom>
+    <div style={{ padding: "16px" }}>
+      <Typography variant="h4" gutterBottom style={{ color: "black" }}>
         My Bids
       </Typography>
       <Grid container spacing={2}>
         {bids.map((bid) => (
           <Grid item xs={12} key={bid.projectId}>
-            <Paper>
-              <Card className={classes.card}>
-                <CardHeader title={`Project ID: ${bid.projectId}`} />
-                <CardContent>
-                  <Typography gutterBottom variant="body1">
-                    Client Address: {bid.clientAddress}
-                  </Typography>
-                  <Typography gutterBottom variant="body1">
-                    Freelancer Address: {bid.freelancerAddress}
-                  </Typography>
-                  <Divider />
-                  <Typography gutterBottom variant="body1">
+            <Slide direction="left" in={true} timeout={500}>
+              <Card elevation={3} style={{ backgroundColor: "white" }}>
+                <CardContent style={{ color: "white" }}>
+                  
+                  <Typography gutterBottom style={{ color: "orange" }}>
                     Proposal: {bid.proposal}
                   </Typography>
-                  <Typography gutterBottom variant="body1">
+                  <Typography gutterBottom style={{ color: "orange" }}>
                     Delivery Time: {bid.deliveryTime}
                   </Typography>
-                  <Typography gutterBottom variant="body1">
+                  <Typography gutterBottom style={{ color: "orange" }}>
                     Bid Amount: {bid.bidAmount}
                   </Typography>
-                  <Typography variant="body1">
+                  <Typography style={{ color: "orange" }}>
                     Status: {getStatusLabel(bid.statusFlag)}
                   </Typography>
                 </CardContent>
               </Card>
-            </Paper>
+            </Slide>
           </Grid>
         ))}
       </Grid>
